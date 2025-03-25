@@ -113,11 +113,14 @@
         */
 
       const changeUrls = function (link) {
-        const anchorEl = document.querySelector("a");
-        anchorEl.href = link;
-        anchorEl.target = "_blank";
-      };
+        const anchorEl = document.querySelectorAll("a:not(footer a)");
 
+        anchorEl.forEach((a) => {
+          a.href = link;
+          a.innerText = "Vai a Google";
+          a.target = "_blank";
+        });
+      };
       changeUrls("https://www.google.com");
 
       /* ESERCIZIO 5
@@ -171,13 +174,28 @@
          Scrivi una funzione che rimuova l'ultima lettera dall'h1 ogni volta che l'utente lo clicca
         */
 
-      const makeItClickable = function () {};
+      const makeItClickable = function () {
+        const h1 = document.querySelector("h1");
+        h1.onclick = function () {
+          h1.innerText = h1.innerText.slice(0, -1);
+        };
+      };
+
+      makeItClickable();
 
       /* ESERCIZIO 10
          Crea una funzione che, al click sul footer, riveli l'URL del link interno come contenuto di un alert()
         */
 
-      const revealFooterLink = function () {};
+      const revealFooterLink = function () {
+        const footer = document.querySelector("footer");
+        footer.onclick = function () {
+          const footerA = footer.querySelector("a");
+          window.alert(footerA.href);
+        };
+      };
+
+      revealFooterLink();
 
       /* ESERCIZIO 11
          Crea una funzione che crei una tabella nell'elemento con id "tableArea".
