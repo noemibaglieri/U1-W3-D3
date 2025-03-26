@@ -30,6 +30,17 @@
       .myHeading {
         color: #ff00d6;
       }
+      table {
+        width: 100%;
+        border: 2px solid black;
+      }
+      table img {
+        width: 5%;
+      }
+
+      th {
+        text-align: left;
+      }
     </style>
   </head>
 
@@ -197,24 +208,122 @@
 
       revealFooterLink();
 
+      /* ESERCIZIO 12
+         Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
+      */
+
+      const addRow = function (
+        name,
+        quantity,
+        price,
+        imgSrc = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/800px-Placeholder_view_vector.svg.png"
+      ) {
+        const table = document.querySelector("#tableArea table");
+        const newTr = document.createElement("tr");
+        const tdImg = document.createElement("td");
+        const imgNode = document.createElement("img");
+        imgNode.src = imgSrc;
+        imgNode.alt = name;
+
+        tdImg.appendChild(imgNode);
+
+        const tdName = document.createElement("td");
+        const tdQuantity = document.createElement("td");
+        const tdPrice = document.createElement("td");
+
+        tdName.innerText = name;
+        tdQuantity.innerText = quantity;
+        tdPrice.innerText = price;
+
+        newTr.append(tdImg, tdName, tdQuantity, tdPrice);
+
+        table.appendChild(newTr);
+      };
+
       /* ESERCIZIO 11
          Crea una funzione che crei una tabella nell'elemento con id "tableArea".
          La tabella avrà 5 elementi e questa struttura: immagine, nome prodotto, quantità, prezzo
       */
 
-      const generateTable = function () {};
+      const generateTable = function () {
+        const tableData = [
+          {
+            img: "https://images.unsplash.com/photo-1742576948659-3c630862a38d?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            name: "Cute Dog Print",
+            quantity: 2,
+            price: "50€",
+          },
+          {
+            img: "https://images.unsplash.com/photo-1742728572973-79c31cb2d75b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0fHx8ZW58MHx8fHx8",
+            name: "Morning Sun Print",
+            quantity: 1,
+            price: "46€",
+          },
+          {
+            img: "https://images.unsplash.com/photo-1742201835826-3b607fa4e8b2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxOHx8fGVufDB8fHx8fA%3D%3D",
+            name: "Etnicity Print",
+            quantity: 5,
+            price: "90€",
+          },
+          {
+            img: "https://images.unsplash.com/photo-1741807083060-39c641cd97fa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzMnx8fGVufDB8fHx8fA%3D%3D",
+            name: "Caves Print",
+            quantity: 11,
+            price: "97€",
+          },
+        ];
+        const tableHeadings = ["Immagine", "Nome", "Quantità", "Prezzo"];
 
-      /* ESERCIZIO 12
-         Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
-      */
+        const tableArea = document.getElementById("tableArea");
+        const table = document.createElement("table");
 
-      const addRow = function () {};
+        const firstTr = document.createElement("tr");
+
+        for (let i = 0; i < tableHeadings.length; i++) {
+          const str = tableHeadings[i];
+
+          const th = document.createElement("th");
+          th.innerText = str;
+          firstTr.appendChild(th);
+        }
+        table.appendChild(firstTr);
+        tableArea.appendChild(table);
+
+        for (let i = 0; i < tableData.length; i++) {
+          // const newTr = document.createElement("tr");
+          // const tdImg = document.createElement("td");
+          // const imgNode = document.createElement("img");
+          // imgNode.src = tableData[i].img;
+          // imgNode.alt = tableData[i].name;
+          // tdImg.appendChild(imgNode);
+
+          // const tdName = document.createElement("td");
+          // const tdQuantity = document.createElement("td");
+          // const tdPrice = document.createElement("td");
+
+          // tdName.innerText = tableData[i].name;
+          // tdQuantity.innerText = tableData[i].quantity;
+          // tdPrice.innerText = tableData[i].price;
+          // console.log(tdImg);
+          // newTr.appendChild(tdImg);
+          // newTr.appendChild(tdName);
+          // newTr.appendChild(tdQuantity);
+          // newTr.appendChild(tdPrice);
+
+          // table.appendChild(newTr);
+          addRow(tableData[i].name, tableData[i].quantity, tableData[i].price, tableData[i].img);
+        }
+      };
+
+      generateTable();
 
       /* ESERCIZIO 14
         Crea una funzione che nasconda le immagini della tabella quando eseguita
       */
 
-      const hideAllImages = function () {};
+      const hideAllImages = function () {
+        const images = document.querySelectorAll("table img");
+      };
 
       /* EXTRA ESERCIZIO 15
         Crea una funzione che cambi il colore del h2 con id "changeMyColor" con un colore random ad ogni click ricevuto
